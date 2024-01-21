@@ -1,21 +1,41 @@
+// Formulario.jsx
 import React, { useState } from 'react';
 
-const Formulario = () => {
+const Formulario = ({ onFormSubmit }) => {
     const [formulario, setFormulario] = useState({
         nombre: '',
-        apellido: '',
-        edad: '',
         email: '',
+        contraseña: '',
+        contraseñaConfirmacion: '',
     });
+
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         setFormulario({ ...formulario, [e.target.name]: e.target.value });
     };
 
+    const validarInput = () => {
+        if (formulario.nombre.trim() === '' || formulario.email.trim() === '' || formulario.contraseña.trim() === '' || formulario.contraseñaConfirmacion.trim() === '') {
+            setError('Completa todos los campos');
+            return false;
+        } else if (formulario.contraseña !== formulario.contraseñaConfirmacion) {
+            setError('Los campos de contraseña no coinciden');
+            return false;
+        }
+
+        setError('');
+        return true;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes manejar la lógica del envío del formulario si es necesario
-        console.log('Formulario enviado:', formulario);
+
+        if (validarInput()) {
+            console.log('Formulario enviado:', formulario);
+            // Llamada a la función proporcionada desde Registro.jsx
+            onFormSubmit();
+        }
     };
 
     return (
@@ -24,6 +44,7 @@ const Formulario = () => {
                 <div className="form-group">
                     <label>Nombre</label>
                     <input
+                        placeholder='Ingresa tu nombre'
                         type="text"
                         name="nombre"
                         className="form-control"
@@ -31,10 +52,11 @@ const Formulario = () => {
                         onChange={handleChange}
                     />
                 </div>
-                
+
                 <div className="form-group">
                     <label>Email</label>
                     <input
+                        placeholder='tuemail@ejemplo.com'
                         type="email"
                         name="email"
                         className="form-control"
@@ -46,28 +68,36 @@ const Formulario = () => {
                 <div className="form-group">
                     <label>Contraseña</label>
                     <input
-                        type="text"
-                        name="nombre"
+                        placeholder='Ingresa tu contraseña'
+                        type="password"
+                        name="contraseña"
                         className="form-control"
-                        value={formulario.nombre}
+                        value={formulario.contraseña}
                         onChange={handleChange}
                     />
                 </div>
 
                 <div className="form-group">
-                    <label>Confirmar contraseña</label>
+                    <label>Confirmar Contraseña</label>
                     <input
-                        type="text"
-                        name="nombre"
+                        placeholder='Confirma tu contraseña'
+                        type="password"
+                        name="contraseñaConfirmacion"
                         className="form-control"
-                        value={formulario.nombre}
+                        value={formulario.contraseñaConfirmacion}
                         onChange={handleChange}
                     />
                 </div>
 
                 <button type="submit" className="btn btn-primary">
-                    Enviar
+                    Registrarse
                 </button>
+
+                {error && (
+                    <div className="alert alert-danger mt-3" role="alert">
+                        {error}
+                    </div>
+                )}
             </form>
         </>
     );
