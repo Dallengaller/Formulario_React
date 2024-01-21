@@ -17,10 +17,10 @@ const Formulario = ({ onFormSubmit }) => {
 
     const validarInput = () => {
         if (formulario.nombre.trim() === '' || formulario.email.trim() === '' || formulario.contraseña.trim() === '' || formulario.contraseñaConfirmacion.trim() === '') {
-            setError('Completa todos los campos');
+            setError('Completa todos los campos!');
             return false;
         } else if (formulario.contraseña !== formulario.contraseñaConfirmacion) {
-            setError('Los campos de contraseña no coinciden');
+            setError('Los campos de contraseña no coinciden!');
             return false;
         }
 
@@ -33,7 +33,6 @@ const Formulario = ({ onFormSubmit }) => {
 
         if (validarInput()) {
             console.log('Formulario enviado:', formulario);
-            // Llamada a la función proporcionada desde Registro.jsx
             onFormSubmit();
         }
     };
@@ -42,7 +41,7 @@ const Formulario = ({ onFormSubmit }) => {
         <>
             <form className="formulario" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Nombre</label>
+                    <label></label>
                     <input
                         placeholder='Ingresa tu nombre'
                         type="text"
@@ -54,7 +53,7 @@ const Formulario = ({ onFormSubmit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Email</label>
+                    <label></label>
                     <input
                         placeholder='tuemail@ejemplo.com'
                         type="email"
@@ -66,7 +65,7 @@ const Formulario = ({ onFormSubmit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Contraseña</label>
+                    <label></label>
                     <input
                         placeholder='Ingresa tu contraseña'
                         type="password"
@@ -78,7 +77,7 @@ const Formulario = ({ onFormSubmit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Confirmar Contraseña</label>
+                    <label></label>
                     <input
                         placeholder='Confirma tu contraseña'
                         type="password"
@@ -89,7 +88,7 @@ const Formulario = ({ onFormSubmit }) => {
                     />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-success btn-lg mt-3">
                     Registrarse
                 </button>
 

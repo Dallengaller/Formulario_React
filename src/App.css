@@ -41,12 +41,20 @@
   color: #888;
 }
 
-/* Mensaje de error en rojo */
-.error {
-  padding: 10px;
-  color: white;
-  background-color: red;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 10px;
+
+  .formulario_Background {
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20px;
+    background-color: white;
+  }
+
+  body {
+    background: linear-gradient(to bottom, #f3ff52, #8aff8a);
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: #333;
   }
